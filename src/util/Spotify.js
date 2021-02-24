@@ -1,5 +1,5 @@
 const clientId = 'e6525188e780422b81e66898f07aee89';
-const redirectURL = 'http://localhost:3000/';
+const redirectUri = 'http://localhost:3000/';
 
 let accessToken;
 
@@ -20,6 +20,10 @@ getAccessToken(){
         window.setTimeout(() => accessToken = '', expiresIn * 1000);
         window.history.pushState('Access Token', null, '/');
         return accessToken;
+    }
+    else {
+        const accessUrl = `https://accounts.spotify.com/authorize?client_id=${cliendId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
+        window.location = accessUrl;
     }
 }
 }
