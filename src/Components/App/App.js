@@ -59,6 +59,7 @@ this.addTrack = this.addTrack.bind(this);
 this.removeTrack = this.removeTrack.bind(this);
 this.updatePlaylistName = this.updatePlaylistName.bind(this);
 this.savePlaylist = this.savePlaylist.bind(this);
+this.search = this.search.bind(this);
   }
 
   addTrack(track){
@@ -81,10 +82,14 @@ this.savePlaylist = this.savePlaylist.bind(this);
 
   updatePlaylistName(name) {
     this.setState({ playlistName: name});
+  }
 
-    savePlaylist() {
-      const trackUris = this.state.playlistTracks.map(track => track.uri);
-    }
+  savePlaylist() {
+    const trackUris = this.state.playlistTracks.map(track => track.uri);
+  }
+
+  search(searchTerm) {
+    console.log(searchTerm);
   }
 
   render() {
@@ -97,6 +102,7 @@ this.savePlaylist = this.savePlaylist.bind(this);
       <SearchResults 
       searchResults={this.state.searchResults}
       onAdd={this.addTrack}
+      onSearch={this.search}
       />
       <Playlist 
       playlistName={this.state.playlistName} 
