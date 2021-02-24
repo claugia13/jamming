@@ -1,14 +1,25 @@
-let userAccessToken;
+const clientId = 'e6525188e780422b81e66898f07aee89';
+const redirectURL = 'http://localhost:3000/';
+
+let accessToken;
 
 const Spotify = {
 getAccessToken(){
-    if(userAccessToken) {
-        return userAccessToken;
+    if(accessToken) {
+        return accessToken;
     }
-    else {
         // check for access token match
-        const userAccessToken = window.location.href.match(access_token=([^&]*));
+        const accessTokenMatch = window.location.href.match(access_token=([^&]*));
         const expiresInMatch = window.location.href.match(expires_in=([^&]*));
+
+    if(accessTokenMatch && expiresInMatch) {
+        accessToken = accessTokenMatch[1];
+        const expiresIn = Number(expiresInMatch[1]);
+
+        // this clears the paramaters, allowing us to grab a new access token when it expires
+        window.setTimeout(() => accessToken = '', expiresIn * 1000);
+        window.history.pushState('Access Token', null, '/');
+        return accessToken;
     }
 }
 }
