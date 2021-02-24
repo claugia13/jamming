@@ -48,6 +48,16 @@ getAccessToken(){
             }));
         }
     });
+    },
+
+    savePlaylist(name, trackUris) {
+        if(!name || !trackUris.length) {
+            return;
+        }
+        
+         const accessToken = Spotify.getAccessToken();
+         const headers = { Authorization: `Bearer ${accessToken}`};
+         let userId;
     }
 
 }
