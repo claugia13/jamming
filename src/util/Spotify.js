@@ -1,5 +1,5 @@
 const clientId = 'e6525188e780422b81e66898f07aee89';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'http://jammming-by-claudia.surge.sh';
 
 let accessToken;
 
