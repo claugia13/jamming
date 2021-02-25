@@ -21,10 +21,9 @@ getAccessToken(){
         window.history.pushState('Access Token', null, '/');
         return accessToken;
     }
-    else {
         const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
         window.location = accessUrl;
-    }
+    
 },
 
     search(searchTerm) {
@@ -38,7 +37,6 @@ getAccessToken(){
         if(!jsonResponse.tracks) {
             return [];
         }
-        else {
             return jsonResponse.tracks.items.map(track => ({
                 id: track.id,
                 name: track.name,
@@ -46,7 +44,6 @@ getAccessToken(){
                 album: track.album.name,
                 uri: track.uri
             }));
-        }
     });
     },
 
@@ -69,7 +66,7 @@ getAccessToken(){
              }).then(response => response.json()
              ).then(jsonResponse => {
                  const playlistId = jsonResponse.id;
-                 return fetch(`/v1/users/${userId}/playlists/${playlistId}/tracks`, {
+                 return fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
                      headers: headers,
                      method: 'POST',
                      body: JSON.stringify({ uris: trackUris})
